@@ -61,7 +61,7 @@ const handleCategoryDetails = async (id) => {
           }" alt="Shoes" />
         </figure>
         <div>
-        <h2 class="bg-black text-white w-[140px] ml-[240px] absolute top-[170px] right-3 text-center rounded">${hours + ' hrs ' + mins + ' min ' + ' ago'}</h2>
+        <h2 class="bg-black text-white w-[200px] ml-[240px] absolute top-[170px] right-3 text-center rounded">${items.others.posted_date ? hours + " hrs " + mins + " min " + " ago " : ''}</h2>
         </div>
         <div class="card-body">
           <div class="flex justify-center gap-3 mt-4">
@@ -76,9 +76,10 @@ const handleCategoryDetails = async (id) => {
           </div>
           <div class="flex w-[180px]">
             <p class="ml-[47px]">${items.authors[0].profile_name}</p>
-            <img class="w-[20px] h-[20px] mt-1" src="${
-              items.authors[0].verified ? "/images/tic.svg" : ""
-            }" alt="" />
+            <div>
+            ${items.authors[0].verified ? '<img class="w-[20px] h-[20px] mt-1" src="/images/tic.svg"}"/>' : ''}
+            </div>
+            
           </div>
           <h3 class="ml-[47px]">${items.others.views} views</h3>
         </div>
