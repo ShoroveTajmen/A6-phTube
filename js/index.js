@@ -18,7 +18,7 @@ const handleCategory = async () => {
     div.innerHTML = `
     <button
     onclick="handleCategoryDetails('${category.category_id}')"
-    class="capitalize rounded font-semibold bg-[#25252533] pt-[7px] pb-[7px] pr-[20px] pl-[20px] mr-8"
+    class="capitalize rounded font-semibold bg-[#25252533]  hover:bg-red-500 hover:text-white pt-[7px] pb-[7px] pr-[20px] pl-[20px] mr-8"
   >
     ${category.category}
   </button>
@@ -42,18 +42,20 @@ const handleCategoryDetails = async (id) => {
 
   //get card-container element
   const cardContainer = document.getElementById("card-container");
+  const notFouundContainer = document.getElementById('notFouund-container');
+  notFouundContainer.textContent = "";
   cardContainer.textContent = "";
-  //use forEach loop to accessing all categories values
-  dataa.forEach((items) => {
 
-    let second = items.others.posted_date;
-    let hours = Math.floor(second / 3600);
-    let mins = Math.floor((second % 3600) / 60);
+  if (dataa.length > 0) {
+    //use forEach loop to accessing all categories values
+    dataa.forEach((items) => {
+      let second = items.others.posted_date;
+      let hours = Math.floor(second / 3600);
+      let mins = Math.floor((second % 3600) / 60);
 
-    console.log(second);
-    const div = document.createElement("div");
-    div.innerHTML = `
-    
+      //create div
+      const div = document.createElement("div");
+      div.innerHTML = `  
         <div class="card bg-base-100 shadow-xl mt-7">
         <figure>
           <img class="w-[340px] h-[200px] rounded-lg relative" src="${
@@ -61,7 +63,11 @@ const handleCategoryDetails = async (id) => {
           }" alt="Shoes" />
         </figure>
         <div>
-        <h2 class="bg-black text-white w-[200px] ml-[240px] absolute top-[170px] right-3 text-center rounded">${items.others.posted_date ? hours + " hrs " + mins + " min " + " ago " : ''}</h2>
+        <h2 class="bg-black text-white w-[200px] ml-[240px] absolute top-[170px] right-3 text-center rounded">${
+          items.others.posted_date
+            ? hours + " hrs " + mins + " min " + " ago "
+            : ""
+        }</h2>
         </div>
         <div class="card-body">
           <div class="flex justify-center gap-3 mt-4">
@@ -77,7 +83,11 @@ const handleCategoryDetails = async (id) => {
           <div class="flex w-[180px]">
             <p class="ml-[47px]">${items.authors[0].profile_name}</p>
             <div>
-            ${items.authors[0].verified ? '<img class="w-[20px] h-[20px] mt-1" src="/images/tic.svg"}"/>' : ''}
+            ${
+              items.authors[0].verified
+                ? '<img class="w-[20px] h-[20px] mt-1" src="/images/tic.svg"}"/>'
+                : ""
+            }
             </div>
             
           </div>
@@ -85,8 +95,23 @@ const handleCategoryDetails = async (id) => {
         </div>
       </div>       
         `;
-    cardContainer.appendChild(div);
-  });
+      //append child
+      cardContainer.appendChild(div);
+    });
+  } else {
+    //create div
+    const div = document.createElement("div");
+    div.innerHTML = `
+    <div class="flex flex-col items-center justify-center mt-[120px]">
+    <img class="w-[120px] h-[120px]" src="/images/Icon.png" alt="" />
+    <h2 class="text-5xl font-bold text-center mt-8">
+      Oops!! Sorry, There is no <br />
+      content here
+    </h2>
+  </div>
+    `;
+    notFouundContainer.appendChild(div);
+  }
 };
 handleCategory();
-handleCategoryDetails(1000);
+// handleCategoryDetails(1000);
