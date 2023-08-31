@@ -114,4 +114,11 @@ const handleCategoryDetails = async (id) => {
   }
 };
 handleCategory();
-// handleCategoryDetails(1000);
+handleCategoryDetails(1000);
+
+
+/////////////////////////////////////////
+//connect the blog file
+const blog = () => {
+    document.location.href = "blog.html";
+}
