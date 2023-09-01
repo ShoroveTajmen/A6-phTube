@@ -28,25 +28,37 @@
   <body class="">
     <!-- navbar start -->
     <nav>
-      <section class="mt-[40px]">
+      <section class="mt-[40px]  md:w-[1400px] lg:w-[1440px] mx-auto">
         <div
-          class="flex flex-col md:flex-row justify-around items-center mb-[30px] px-4 md:px-0"
+          class="flex flex-col md:flex-row justify-center md:justify-between items-center mb-[30px]  md:px-0"
         >
-          <img class="mb-2 md:mb-0" src="/images/Logo.png" alt="" />
-          <button
-            onclick="shortByView()"
-            class="capitalize rounded font-semibold bg-[#25252533] pt-[10px] pb-[10px] pr-[20px] pl-[20px] mb-2 md:mb-0"
-          >
-            Sort by view
-          </button>
-          <button
-            onclick="blog()"
-            class="capitalize rounded font-semibold text-white bg-[#FF1F3D] pt-[10px] pb-[10px] pr-[20px] pl-[20px]"
-          >
-            Blog
-          </button>
+          <div>
+            <img
+              class="mb-2 md:mb-0 md:ml-8 lg:ml-0"
+              src="/images/Logo.png"
+              alt=""
+            />
+          </div>
+          <div>
+            <button
+              onclick="shortByView()"
+              class="capitalize rounded font-semibold bg-[#25252533] pt-[10px] pb-[10px] pr-[20px] pl-[20px] mb-2 md:mb-0 active:bg-[#dc2626] active:text-white md:ml-0 lg:ml-0"
+            >
+              Sort by view
+            </button>
+          </div>
+          <div>
+            <button
+              onclick="blog()"
+              class="capitalize rounded font-semibold text-white bg-[#FF1F3D] pt-[10px] pb-[10px] pr-[20px] pl-[20px]"
+            >
+              Blog
+            </button>
+          </div>
         </div>
-        <hr class="md:w-[1430px] mx-auto border-1" />
+        <hr
+          class="md:w-[1400px] md:ml-4 lg:ml-0 lg:w-[1440px] mx-auto border-1"
+        />
       </section>
     </nav>
     <!-- navbar end -->
@@ -57,22 +69,20 @@
         <div class="category-container mt-[30px] w-full">
           <div
             id="category-container"
-            class="text-center flex ml-[760px]"
+            class="text-center flex ml-[70px] md:ml-[540px] lg:ml-[760px]"
           ></div>
         </div>
       </section>
       <!-- category name end -->
 
       <!-- card conatier start  -->
-      <section>
+      <section class="md:w-[1400px] mx-auto">
         <div
           id="card-container"
-          class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 my-8 w-[1440px] mx-auto gap-6"
-        >
-        </div>
+          class=" grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 my-8  mx-auto gap-6"
+        ></div>
         <!-- not found div -->
-        <div id="notFouund-container">
-        </div>
+        <div id="notFouund-container"></div>
       </section>
     </main>
   </body>

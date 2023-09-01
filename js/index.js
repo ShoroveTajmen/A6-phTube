@@ -14,11 +14,11 @@ const handleCategory = async () => {
     // console.log(category);
     //create a div
     const div = document.createElement("div");
-    div.classList = `flex justify-between`;
+    div.classList = `flex flex-row justify-center md:justify-between`;
     div.innerHTML = `
     <button
     onclick="handleCategoryDetails('${category.category_id}')"
-    class="capitalize rounded font-semibold bg-[#25252533] active:bg-[#dc2626] active:text-white pt-[7px] pb-[7px] pr-[20px] pl-[20px] mr-8"
+    class="capitalize rounded font-semibold bg-[#25252533] pt-[7px] pb-[7px] lg:pr-[20px] lg:pl-[20px] md:pr-[20px] md:pl-[20px] pr-[7px] pl-[7px] mr-4 md:mr-8"
   >
     ${category.category}
   </button>
@@ -32,7 +32,7 @@ const handleCategory = async () => {
 //load category details info
 let globalData;
 const handleCategoryDetails = async (id) => {
-  // console.log(id);
+  console.log(id);
   //fetch category details
   const res = await fetch(
     `https://openapi.programming-hero.com/api/videos/category/${id}`
@@ -58,21 +58,21 @@ const handleCategoryDetails = async (id) => {
       //create div
       const div = document.createElement("div");
       div.innerHTML = `  
-        <div class="card bg-base-100 shadow-xl mt-7">
+        <div class="card bg-base-100 mt-7 ">
         <figure>
-          <img class="w-[340px] h-[200px] rounded-lg relative" src="${
+          <img class=" w-[420px] h-[250px] rounded-lg relative" src="${
             items.thumbnail
           }" alt="Shoes" />
         </figure>
         <div>
-        <h2 class="bg-black text-white w-[200px] ml-[240px] absolute top-[170px] right-3 text-center rounded">${
+        <h2 class="bg-black text-white w-[200px] md:w-[200px] md:ml-[240px] absolute top-[220px] lg:top-[220px] md:top-[220px] right-3 lg:right-3 md:right-[150px] text-center rounded text-l md:text-sm">${
           items.others.posted_date
             ? hours + " hrs " + mins + " min " + " ago "
             : ""
         }</h2>
         </div>
-        <div class="card-body">
-          <div class="flex justify-center gap-3 mt-4">
+        <div class="card-body md:ml-[100px] lg:ml-0">
+          <div class="flex lg:justify-start gap-3 mt-0 md:mt-4">
             <img
               class="w-[40px] h-[40px] rounded-full"
               src="${items.authors[0].profile_picture}"
@@ -82,12 +82,14 @@ const handleCategoryDetails = async (id) => {
               ${items.title}
             </h2>
           </div>
-          <div class="flex w-[180px]">
-            <p class="ml-[47px]">${items.authors[0].profile_name}</p>
+          <div class="flex  w-[185px] gap-1">
+            <p class="ml-[47px] flex-grow-0">${
+              items.authors[0].profile_name
+            }</p>
             <div>
             ${
               items.authors[0].verified
-                ? '<img class="w-[20px] h-[20px] mt-1" src="/images/tic.svg"}"/>'
+                ? '<img class="mt-1" src="/images/ticc.svg"}"/>'
                 : ""
             }
             </div>          
@@ -137,45 +139,43 @@ const shortByView = () => {
     // Create div
     const div = document.createElement("div");
     div.innerHTML = `
-      <div class="card bg-base-100 shadow-xl mt-7">
-        <figure>
-          <img class="w-[340px] h-[200px] rounded-lg relative" src="${
-            items.thumbnail
-          }" alt="Shoes" />
-        </figure>
-        <div>
-          <h2 class="bg-black text-white w-[200px] ml-[240px] absolute top-[170px] right-3 text-center rounded">${
-            items.others.posted_date
-              ? hours + " hrs " + mins + " min " + " ago "
-              : ""
-          }</h2>
-        </div>
-        <div class="card-body">
-          <div class="flex justify-center gap-3 mt-4">
-            <img
-              class="w-[40px] h-[40px] rounded-full"
-              src="${items.authors[0].profile_picture}"
-              alt="Shoes"
-            />
-            <h2 class="card-title text-lg font-bold">
-              ${items.title}
-            </h2>
-          </div>
-          <div class="flex w-[180px]">
-            <p class="ml-[47px]">${items.authors[0].profile_name}</p>
-            <div>
-              ${
-                items.authors[0].verified
-                  ? '<img class="w-[20px] h-[20px] mt-1" src="/images/tic.svg"/>'
-                  : ""
-              }
-            </div>
-          </div>
-          <h3 class="ml-[47px]">${items.others.views} views</h3>
-        </div>
+    <div class="card bg-base-100 mt-7 ">
+    <figure>
+      <img class=" w-[420px] h-[250px] rounded-lg relative" src="${
+        items.thumbnail
+      }" alt="Shoes" />
+    </figure>
+    <div>
+    <h2 class="bg-black text-white w-[200px] md:w-[200px] md:ml-[240px] absolute top-[220px] lg:top-[220px] md:top-[220px] right-3 lg:right-3 md:right-[150px]  text-center rounded text-l md:text-sm">${
+      items.others.posted_date ? hours + " hrs " + mins + " min " + " ago " : ""
+    }</h2>
+    </div>
+    <div class="card-body md:ml-[100px] lg:ml-0">
+      <div class="flex lg:justify-start gap-3 mt-0 md:mt-4">
+        <img
+          class="w-[40px] h-[40px] rounded-full"
+          src="${items.authors[0].profile_picture}"
+          alt="Shoes"
+        />
+        <h2 class="card-title text-lg font-bold">
+          ${items.title}
+        </h2>
       </div>
+      <div class="flex  w-[185px] gap-1">
+        <p class="ml-[47px] flex-grow-0">${items.authors[0].profile_name}</p>
+        <div>
+        ${
+          items.authors[0].verified
+            ? '<img class="mt-1" src="/images/ticc.svg"}"/>'
+            : ""
+        }
+        </div>          
+      </div>
+      <h3 class="ml-[47px]">${items.others.views} views</h3>
+    </div>
+  </div>       
     `;
-    // Append the div to the card container
+    //append child
     cardContainer.appendChild(div);
   });
 };
