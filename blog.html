@@ -12,13 +12,13 @@
     />
     <script src="https://cdn.tailwindcss.com"></script>
   </head>
-  <body>
+  <body >
     <!-- Discuss the scope of var, let, and const -->
-    <section>
-      <div class="text-center w-[900px] mx-auto">
-        <h1 class="text-4xl font-bold mt-8">JavaScript Variables</h1>
-        <div class="bg-slate-100 p-4 text-left my-4">
-          <p class="">
+    <section class="p-4">
+      <div class="text-center md:w-[900px]  mx-auto">
+        <h1 class="text-3xl md:text-4xl lg:text-5xl font-bold mt-8">JavaScript Variables</h1>
+        <div class="bg-slate-100 p-4 text-left my-4 md:my-8">
+          <p class="text-sm md:text-base lg:text-lg">
             JavaScript variables' scope defines where they are accessible and
             where they are not. A variable's scope can be divided into three
             categories: global scope, function scope, and block scope. Depending
@@ -90,13 +90,13 @@
     </section>
 
     <!-- Use cases for 'undefined' and 'null' -->
-    <section>
-      <div class="text-center w-[900px] mx-auto">
-        <h1 class="text-4xl font-bold mt-8">
+    <section class="p-4">
+      <div class="text-center md:w-[900px] mx-auto">
+        <h1 class="text-3xl md:text-4xl lg:text-5xl font-bold mt-8">
           List of common use cases for 'null' and 'undefined' in JavaScript
         </h1>
-        <div class="bg-slate-100 p-4 text-left my-4">
-          <p class="">
+        <div class="bg-slate-100 p-4 text-left my-4 md:my-8">
+          <p class="text-sm md:text-base lg:text-lg">
             The special values null and undefined in JavaScript both stand for a
             value's absence, but they are applied in slightly different
             circumstances. For null and undefined, the following usage cases are
@@ -105,58 +105,61 @@
           <h2 class="text-2xl font-semibold mt-4 bg-white p-2">Undefined :</h2>
           <ul>
             <li class="mt-4">
-              <span class="text-lg font-semibold">1.</span> A function return undefined when that function do not have a 'return' statement.
+              <span class="text-lg font-semibold">1.</span> A function return
+              undefined when that function do not have a 'return' statement.
             </li>
             <li class="mt-4">
-              <span class="text-lg font-semibold">2.</span> 
+              <span class="text-lg font-semibold">2.</span> When we calling a
+              function without provide the parameters are set 'undefined'
             </li>
             <li class="mt-4">
-              <span class="text-lg font-semibold">3.</span> Anywhere in the
-              script can access a var variable if it is declared outside of any
-              function.
+              <span class="text-lg font-semibold">3.</span> When we declared
+              variable but not assigned a value are initialized to 'undefined'
             </li>
             <li class="mt-4">
-              <span class="text-lg font-semibold">4.</span> Var variables can be
-              used before they are declared since they are hoisted to the top of
-              their scope (but their value won't be known until it is assigned).
+              <span class="text-lg font-semibold">4.</span> Array that are not
+              assigned any value will filled to 'undefined'
+            </li>
+            <li class="mt-4">
+              <span class="text-lg font-semibold">5.</span>When accessing an
+              object property that doesn't exist returns undefined.
             </li>
           </ul>
-          <h2 class="text-2xl font-semibold mt-6 bg-white p-2">let :</h2>
+          <h2 class="text-2xl font-semibold mt-6 bg-white p-2">null :</h2>
           <ul>
             <li class="mt-4">
-              <span class="text-lg font-semibold">1.</span> Let variables have
-              block scope. They are only available within the declaration block.
+              <span class="text-lg font-semibold">1.</span> When we use 'null'
+              it's clearly indicates that a variable or property intentionally
+              has no value
             </li>
             <li class="mt-4">
-              <span class="text-lg font-semibold">2.</span> Let variables,
-              unlike var, are not hoisted to the top of their scope, therefore
-              they cannot be used before they are defined.
+              <span class="text-lg font-semibold">2.</span> We can explicitly
+              check a values absence using 'null'
             </li>
             <li class="mt-4">
-              <span class="text-lg font-semibold">3.</span> You will get a
-              syntax error if you define a let variable with the same name in
-              the same scope.
+              <span class="text-lg font-semibold">3.</span> Maximum time 'null'
+              is used inn database to represent missing or unknown data.
+            </li>
+            <li class="mt-4">
+              <span class="text-lg font-semibold">4.</span> Sometimes function
+              can return 'null' to indicate that they did not produce a
+              meaningful result
             </li>
           </ul>
-          <h2 class="text-2xl font-semibold mt-6 bg-white p-2">const :</h2>
-          <ul>
-            <li class="mt-4">
-              <span class="text-lg font-semibold">1.</span> Like let, variables
-              declared with const also have block scope.
-            </li>
-            <li class="mt-4">
-              <span class="text-lg font-semibold">2.</span> The main distinction
-              is that once const variables are declared, they must have a value
-              assigned to them since once that value is assigned, it cannot be
-              changed. However, properties or elements for objects and arrays
-              can still be changed.
-            </li>
-            <li class="mt-4">
-              <span class="text-lg font-semibold">3.</span> Similar to let,
-              const variables are only usable within the block in which they are
-              declared and are not elevated to the top of their scope.
-            </li>
-          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- understanding of rest API -->
+    <section class="p-4">
+      <div class="text-center md:w-[900px] mx-auto">
+        <h1 class="text-3xl md:text-4xl lg:text-5xl font-bold mt-8">
+          Understanding of REST API
+        </h1>
+        <div class="bg-slate-100 p-4 text-left my-4 md:my-8">
+          <p class="text-sm md:text-base lg:text-lg">
+            REST API refers that Representational State Transfer Application Programming Interface. It's a set of architechtural principles that alow us to designing and interacting with web services. RESTful APIs use HTTP request to interact with data. That means when a user send request to the server for resources here using REST API, then server back the set of resources to the users.
+          </p>         
         </div>
       </div>
     </section>
