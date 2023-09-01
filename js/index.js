@@ -30,6 +30,7 @@ const handleCategory = async () => {
 
 ///////////////////////////////////////////////////
 //load category details info
+let globalData;
 const handleCategoryDetails = async (id) => {
   // console.log(id);
   //fetch category details
@@ -38,6 +39,7 @@ const handleCategoryDetails = async (id) => {
   );
   const data = await res.json();
   const dataa = data.data;
+  globalData = data.data;
   // console.log(dataa);
 
   //get card-container element
@@ -112,6 +114,72 @@ const handleCategoryDetails = async (id) => {
     notFouundContainer.appendChild(div);
   }
 };
+
+/////////////////////////////////////////
+//short bu view function
+const shortByView = () => {
+  // console.log(globalData);
+  //sorting by views
+  globalData.sort(
+    (a, b) => parseInt(b.others.views) - parseInt(a.others.views)
+  );
+
+  // rendering the sorted items
+  const cardContainer = document.getElementById("card-container");
+  // Clear the card container
+  cardContainer.textContent = "";
+
+  globalData.forEach((items) => {
+    let second = items.others.posted_date;
+    let hours = Math.floor(second / 3600);
+    let mins = Math.floor((second % 3600) / 60);
+
+    // Create div
+    const div = document.createElement("div");
+    div.innerHTML = `
+      <div class="card bg-base-100 shadow-xl mt-7">
+        <figure>
+          <img class="w-[340px] h-[200px] rounded-lg relative" src="${
+            items.thumbnail
+          }" alt="Shoes" />
+        </figure>
+        <div>
+          <h2 class="bg-black text-white w-[200px] ml-[240px] absolute top-[170px] right-3 text-center rounded">${
+            items.others.posted_date
+              ? hours + " hrs " + mins + " min " + " ago "
+              : ""
+          }</h2>
+        </div>
+        <div class="card-body">
+          <div class="flex justify-center gap-3 mt-4">
+            <img
+              class="w-[40px] h-[40px] rounded-full"
+              src="${items.authors[0].profile_picture}"
+              alt="Shoes"
+            />
+            <h2 class="card-title text-lg font-bold">
+              ${items.title}
+            </h2>
+          </div>
+          <div class="flex w-[180px]">
+            <p class="ml-[47px]">${items.authors[0].profile_name}</p>
+            <div>
+              ${
+                items.authors[0].verified
+                  ? '<img class="w-[20px] h-[20px] mt-1" src="/images/tic.svg"/>'
+                  : ""
+              }
+            </div>
+          </div>
+          <h3 class="ml-[47px]">${items.others.views} views</h3>
+        </div>
+      </div>
+    `;
+    // Append the div to the card container
+    cardContainer.appendChild(div);
+  });
+};
+
 handleCategory();
 handleCategoryDetails(1000);
 
