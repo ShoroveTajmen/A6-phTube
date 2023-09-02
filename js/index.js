@@ -1,3 +1,6 @@
+// Define a variable to keep track of the currently active button
+let currentActiveButton = null;
+
 const handleCategory = async () => {
   //fetch data from server
   const res = await fetch(
@@ -15,16 +18,36 @@ const handleCategory = async () => {
     //create a div
     const div = document.createElement("div");
     div.classList = `flex flex-row justify-center md:justify-between`;
+    // Add a unique identifier to each button
+    const buttonId = `category-btn-${category.category_id}`;
     div.innerHTML = `
     <button
+    id = "category-btn"
     onclick="handleCategoryDetails('${category.category_id}')"
-    class="capitalize rounded font-semibold bg-[#25252533] pt-[7px] pb-[7px] lg:pr-[20px] lg:pl-[20px] md:pr-[20px] md:pl-[20px] pr-[7px] pl-[7px] mr-4 md:mr-8"
+    class="capitalize rounded font-semibold  pt-[7px] pb-[7px] lg:pr-[20px] lg:pl-[20px] md:pr-[20px] md:pl-[20px] pr-[7px] pl-[7px] mr-4 md:mr-8 bg-[#25252533]"
   >
     ${category.category}
-  </button>
-    
+  </button>   
     `;
     categoryContainer.appendChild(div);
+
+    // Add a click event listener to each button
+    const button = div.querySelector("button");
+    button.addEventListener("click", function () {
+      // Remove "active" class from the previously active button
+      if (currentActiveButton) {
+        currentActiveButton.classList.remove("bg-red-500", "text-white");
+      }
+
+      // Add "active" class to the clicked button
+      this.classList.add("bg-red-500", "text-white");
+
+      // Update the currently active button
+      currentActiveButton = this;
+
+      // Update the content based on the selected category
+      handleCategoryDetails(category.category_id);
+    });
   });
 };
 
